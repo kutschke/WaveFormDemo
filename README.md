@@ -2,8 +2,9 @@ Two demos of how to implement a memory-efficient collection of raw hits,
 each with a variable length waveform. One demo is for an array of structures
 implementation and the other is for a structure of arrays implmentation.
 
+<pre>
 Each raw hit object has the content of:
-   channelID
+  channelID
    TDC value
    variable length waveform (ADC values)
 
@@ -19,3 +20,4 @@ make
 ./demoSoA
 ./demoAoS
 
+</pre>
