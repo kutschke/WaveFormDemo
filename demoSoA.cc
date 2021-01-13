@@ -23,11 +23,11 @@
 using namespace std;
 
 // The actual data payload class.
-class RawCollections{
+class RawCollection{
 public:
 
   // c'tor for testing only with patterned data.  No real c'tor yet.
-  RawCollections( size_t nEntries, size_t totalSize );
+  RawCollection( size_t nEntries, size_t totalSize );
 
   size_t size()           const { return _n; }
   int    chanID(size_t i) const { return _storage.at(channel_index(i)); }
@@ -49,7 +49,7 @@ private:
 };
 
 // c'tor to test the principle; fill the collection with patterned data.
-RawCollections::RawCollections( size_t n, size_t size):_n(n),_storage(size){
+RawCollection::RawCollection( size_t n, size_t size):_n(n),_storage(size){
 
   int next = _n*3;
   for ( size_t i=0; i<_n; ++i ){
@@ -76,8 +76,8 @@ RawCollections::RawCollections( size_t n, size_t size):_n(n),_storage(size){
 int main(){
   constexpr int n=3;
 
-  // Make the patterned data
-  RawCollections w(n,25);
+  // Make the patterned data; the second arg is just safely big.
+  RawCollection w(n,25);
 
   // View the patterned data.
   cout << "\nView data ordered by hit: " << endl;
