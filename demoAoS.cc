@@ -59,7 +59,7 @@ class RawCollection{
 public:
 
   // c'tor for testing only with patterned data.  No real c'tor yet.
-  RawCollection( int n);
+  RawCollection( int n, int size);
 
   RawView const& at(int i) const { return (RawView const&)(_storage.at(_index.at(i))); }
 
@@ -74,15 +74,12 @@ public:
 
 
 private:
-  constexpr static int waveformLengthEstimate = 6;
-  constexpr static int padding                = 10;
-
   std::vector<int> _index;
   std::vector<int> _storage;
 };
 
 // c'tor to test the principle; fill the collection with patterned data.
-RawCollection::RawCollection( int n):_index(n),_storage(n*waveformLengthEstimate+padding){
+RawCollection::RawCollection( int n, int size):_index(n),_storage(size){
 
   int next=0;
   for ( int i=0; i<n; ++i ){
@@ -110,8 +107,8 @@ RawCollection::RawCollection( int n):_index(n),_storage(n*waveformLengthEstimate
 int main(){
   constexpr int n=3;
 
-  // Make the patterned data
-  RawCollection  w(n);
+  // Make the patterned data; the second arg is just safely big.
+  RawCollection  w(n,25);
 
   // View the patterned data.
   cout << "\nView data as objects: " << endl;
